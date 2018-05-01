@@ -40,10 +40,10 @@ export class FlammeComponent {
 
         for (let i = 0; i < this.bikes.length; i++) {
             if (this.bikes[i].teamType === "peloton") {
-                let topCard = this.bikes[i].deck.takeTopCard();
+                let topCard = this.bikes[i].cardManager.takeTopCard();
                 this.bikes[i].selectedCard = topCard;
             } else if (this.bikes[i].teamType === "muscle") {
-                let topCard = this.bikes[i].deck.takeTopCard();
+                let topCard = this.bikes[i].cardManager.takeTopCard();
                 this.bikes[i].selectedCard = topCard;
             }
         }
@@ -52,12 +52,12 @@ export class FlammeComponent {
     endRound() {
         for (var i = 0; i < this.bikes.length; i++) {
             if (this.bikes[i].teamType === 'human') {
-                this.bikes[i].deck.selectCard(this.bikes[i].selectedCardIndex);
+                this.bikes[i].cardManager.selectCard(this.bikes[i].selectedCardIndex);
 
                 this.bikes[i].cardsState = 0;
                 this.bikes[i].selectedCard = 0;
                 this.bikes[i].selectedCardIndex = 0;
-                this.bikes[i].deck.takeCards();
+                this.bikes[i].cardManager.takeCards();
                 this.bikes[i].exhaustionAdded = false;
             } else {
                 this.bikes[i].selectedCard = 0;
@@ -76,7 +76,7 @@ export class FlammeComponent {
             var peloBike = new FlammeBike();
             peloBike.name = "peloton";
             peloBike.colour = this.chosenTeamColour;
-            peloBike.deck = new FlammeCardManager(2);
+            peloBike.cardManager = new FlammeCardManager(2);
             peloBike.teamType = "peloton";
 
             this.bikes.push(peloBike);
@@ -85,7 +85,7 @@ export class FlammeComponent {
             var muscleRouler = new FlammeBike();
             muscleRouler.name = "rouler";
             muscleRouler.colour = this.chosenTeamColour;
-            muscleRouler.deck = new FlammeCardManager(0);
+            muscleRouler.cardManager = new FlammeCardManager(0);
             muscleRouler.teamType = "muscle";
 
             this.bikes.push(muscleRouler);
@@ -93,7 +93,7 @@ export class FlammeComponent {
             var muscleSprinter = new FlammeBike();
             muscleSprinter.name = "sprinter";
             muscleSprinter.colour = this.chosenTeamColour;
-            muscleSprinter.deck = new FlammeCardManager(3);
+            muscleSprinter.cardManager = new FlammeCardManager(3);
             muscleSprinter.teamType = "muscle";
 
             this.bikes.push(muscleSprinter);
@@ -102,8 +102,8 @@ export class FlammeComponent {
             var bike1 = new FlammeBike();
             bike1.name = "rouler";
             bike1.colour = this.chosenTeamColour;
-            bike1.deck = new FlammeCardManager(0);
-            bike1.deck.takeCards();
+            bike1.cardManager = new FlammeCardManager(0);
+            bike1.cardManager.takeCards();
             bike1.teamType = "human";
 
             this.bikes.push(bike1);
@@ -111,8 +111,8 @@ export class FlammeComponent {
             var bike2 = new FlammeBike();
             bike2.name = "sprinter";
             bike2.colour = this.chosenTeamColour;
-            bike2.deck = new FlammeCardManager(1);
-            bike2.deck.takeCards();
+            bike2.cardManager = new FlammeCardManager(1);
+            bike2.cardManager.takeCards();
             bike2.teamType = "human";
 
             this.bikes.push(bike2);
@@ -122,7 +122,7 @@ export class FlammeComponent {
     addExhaustion(bikeIndex: number) {
         console.log("add exhaustion to " + this.bikes[bikeIndex].name);
 
-        this.bikes[bikeIndex].deck.addExhaustion();
+        this.bikes[bikeIndex].cardManager.addExhaustion();
         this.bikes[bikeIndex].exhaustionAdded = true;
     }
 
@@ -131,7 +131,7 @@ export class FlammeComponent {
 
         this.bikes[bikeIndex].cardsState = 2;
         this.bikes[bikeIndex].selectedCardIndex = cardIndex;
-        this.bikes[bikeIndex].selectedCard = this.bikes[bikeIndex].deck.four[cardIndex];
+        this.bikes[bikeIndex].selectedCard = this.bikes[bikeIndex].cardManager.hand[cardIndex];
 
         for (var i = 0; i < this.bikes.length; i++) {
             if (i !== bikeIndex && this.bikes[i].cardsState !== 2) {
