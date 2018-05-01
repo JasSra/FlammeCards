@@ -8,7 +8,7 @@ export class FlammeCardManager {
     constructor(deckType: number) {
         this.deckType = deckType;
 
-        if (deckType === 0) { // player rouler
+        if (deckType === 0) { // rouler
 
             this.cards.push(3);
             this.cards.push(3);
@@ -26,7 +26,7 @@ export class FlammeCardManager {
             this.cards.push(7);
             this.cards.push(7);
 
-        } else if (deckType === 1) {
+        } else if (deckType === 1) { // sprinter
 
             this.cards.push(2);
             this.cards.push(2);
@@ -44,7 +44,7 @@ export class FlammeCardManager {
             this.cards.push(9);
             this.cards.push(9);
         }
-        else if (deckType === 2) { // pelo
+        else if (deckType === 2) { // peloton
 
             this.cards.push(3);
             this.cards.push(3);
@@ -77,7 +77,7 @@ export class FlammeCardManager {
             this.cards.push(5);
             this.cards.push(5);
             this.cards.push(5);
-            this.cards.push(55);
+            this.cards.push(55); // muscle card
             this.cards.push(9);
             this.cards.push(9);
             this.cards.push(9);

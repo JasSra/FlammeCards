@@ -1,7 +1,7 @@
 import { FlammeCardManager } from './FlammeCardManager';
 
 export class FlammeBike {
-    bikeType : number = 0; // 0,1 player, 2 peloton, 3,4 muscle
+    bikeType : number = 0;
     name: string;
     selectedCard: number;
     selectedCardIndex: number;
@@ -10,6 +10,4 @@ export class FlammeBike {
     colour: string;
     exhaustionAdded: boolean = false;
     teamType: string;
-
-
 }
