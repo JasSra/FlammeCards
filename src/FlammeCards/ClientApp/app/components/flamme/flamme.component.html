@@ -19,7 +19,7 @@
             </div>
             <div *ngIf="bike.cardsState === 1">
               <ul style="padding: 0;">
-                <li style="display: inline;" *ngFor="let c of bike.deck.four; let i = index">
+                <li style="display: inline;" *ngFor="let c of bike.cardManager.hand; let i = index">
                   <button style="width: 4em; height: 4em;" class="btn btn-lg btn-default" (click)="selectCard(j, i)"> {{c}}</button>
                 </li>
               </ul>
@@ -111,13 +111,13 @@
     <tr *ngFor="let bike of bikes; let j = index">      
       <td>
         <h4>{{bike.teamType}} {{bike.colour}} {{bike.name}}</h4>
-        Cards: <span *ngFor="let foo of bike.deck.cards">{{foo}} </span>
+        Cards: <span *ngFor="let card of bike.cardManager.cards">{{card}} </span>
         <br />
-        Recycle: <span *ngFor="let foo of bike.deck.recycle">{{foo}} </span>
+        Recycle: <span *ngFor="let card of bike.cardManager.recycle">{{card}} </span>
         <br />
-        Removed: <span *ngFor="let foo of bike.deck.removed">{{foo}} </span>
+        Removed: <span *ngFor="let card of bike.cardManager.removed">{{card}} </span>
         <br />
-        Four: <span *ngFor="let foo of bike.deck.four">{{foo}} </span>
+        Hand: <span *ngFor="let card of bike.cardManager.hand">{{card}} </span>
         <br />
       </td>
     </tr>
