@@ -1,7 +1,7 @@
 export class FlammeCardManager {
     deckType: number;
     cards: Array<number> = new Array();
-    four: Array<number> = new Array();
+    hand: Array<number> = new Array();
     recycle : Array<number> = new Array();
     removed: Array<number> = new Array();
 
@@ -91,11 +91,11 @@ export class FlammeCardManager {
     }
 
     selectCard(bikeIndex: number) {
-        for (var i = 0; i < this.four.length; i++) {
+        for (var i = 0; i < this.hand.length; i++) {
             if (bikeIndex !== i) {
-                this.recycle.push(this.four[i]);
+                this.recycle.push(this.hand[i]);
             } else {
-                this.removed.push(this.four[i]);
+                this.removed.push(this.hand[i]);
             }
         }
     }
@@ -111,18 +111,18 @@ export class FlammeCardManager {
     }
 
     takeCards(amountOfCards : number = 4): Array<number> {
-        this.four = new Array();
+        this.hand = new Array();
 
         if (this.cards.length > amountOfCards) {
             for (var i = 0; i < amountOfCards; i++) {
-                this.four.push(this.cards[i]);
+                this.hand.push(this.cards[i]);
             }
             this.cards = this.cards.slice(amountOfCards, this.cards.length);
         } else {
             var amount = amountOfCards - this.cards.length;
 
             for (var j = 0; j < this.cards.length; j++) {
-                this.four.push(this.cards[j]);
+                this.hand.push(this.cards[j]);
             }
 
             this.cards = new Array();
@@ -132,14 +132,14 @@ export class FlammeCardManager {
             this.recycle = new Array();
 
             for (var k = 0; k < amount; k++) {
-                this.four.push(this.cards[k]);
+                this.hand.push(this.cards[k]);
             }
             this.cards = this.cards.slice(amount, this.cards.length);
         }
 
         console.log(this);
 
-        return this.four;
+        return this.hand;
     }
 
     shuffle(array : Array<number>) {
