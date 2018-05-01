@@ -31,7 +31,8 @@
               Other bike cards being selected
             </div>
           </div>
-
+          
+          <br/>
         </div>
       </td>
     </tr>
@@ -60,7 +61,12 @@
   <div *ngFor="let bike of bikes; let j = index">
     <div *ngIf="bike.teamType === 'human'">
       <h4>{{bike.colour}} {{bike.name}}</h4>
-      <button [disabled]="bike.exhaustionAdded" class="btn" (click)="addExhaustion(j)">Add exhaustion</button><span *ngIf="bike.exhaustionAdded"> Added</span>  <br/>
+      <div *ngIf="!bike.exhaustionAdded">
+        <button class="btn" (click)="addExhaustion(j)">Add exhaustion</button><span *ngIf="bike.exhaustionAdded"> Added</span>  <br/>
+      </div>
+      <div *ngIf="bike.exhaustionAdded">
+        <button class="btn" (click)="removeExhaustion(j)">Remove exhaustion</button>  <br />
+      </div>
     </div>   
   </div>
 

@@ -132,6 +132,12 @@ export class FlammeComponent {
         this.bikes[bikeIndex].exhaustionAdded = true;
     }
 
+    removeExhaustion(bikeIndex: number) {
+        console.log("remove exhaustion to " + this.bikes[bikeIndex].name);
+
+        this.bikes[bikeIndex].exhaustionAdded = false;
+    }
+
     selectCard(bikeIndex: number, cardIndex: number) {
         console.log("bike index: " + bikeIndex + " card index: " + cardIndex);
 
