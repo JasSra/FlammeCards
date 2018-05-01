@@ -61,7 +61,7 @@
     <div *ngIf="bike.teamType === 'human'">
       <h4>{{bike.colour}} {{bike.name}}</h4>
       <button [disabled]="bike.exhaustionAdded" class="btn" (click)="addExhaustion(j)">Add exhaustion</button><span *ngIf="bike.exhaustionAdded"> Added</span>  <br/>
-    </div>
+    </div>   
   </div>
 
   <br />
@@ -96,10 +96,6 @@
       <td><h4>{{bike.teamType}} {{bike.colour}} {{bike.name}}</h4></td>
     </tr>
   </table>
-
-  <!--<ul>
-    <li *ngFor="let bike of bikes; let j = index"><h4>{{bike.teamType}} {{bike.colour}} {{bike.name}}</h4></li>
-  </ul>-->
 
 </div>
 

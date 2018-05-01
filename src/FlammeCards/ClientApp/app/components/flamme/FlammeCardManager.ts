@@ -100,6 +100,7 @@ export class FlammeCardManager {
         }
     }
 
+    // TODO call takeCards with 1
     takeTopCard(): number {
         var card = this.cards[0];
 
@@ -142,6 +143,7 @@ export class FlammeCardManager {
         return this.hand;
     }
 
+    // Fisher–Yates shuffle
     shuffle(array : Array<number>) {
         var i = 0, j = 0, temp = 0;
 

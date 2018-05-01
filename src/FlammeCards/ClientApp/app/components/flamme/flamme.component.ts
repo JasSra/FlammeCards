@@ -52,8 +52,15 @@ export class FlammeComponent {
     endRound() {
         for (var i = 0; i < this.bikes.length; i++) {
             if (this.bikes[i].teamType === 'human') {
+
                 this.bikes[i].cardManager.selectCard(this.bikes[i].selectedCardIndex);
 
+                // Add exhaustion if required
+                if (this.bikes[i].exhaustionAdded) {
+                    this.bikes[i].cardManager.addExhaustion();
+                }
+
+                // Reset the state
                 this.bikes[i].cardsState = 0;
                 this.bikes[i].selectedCard = 0;
                 this.bikes[i].selectedCardIndex = 0;
@@ -121,8 +128,7 @@ export class FlammeComponent {
 
     addExhaustion(bikeIndex: number) {
         console.log("add exhaustion to " + this.bikes[bikeIndex].name);
-
-        this.bikes[bikeIndex].cardManager.addExhaustion();
+        
         this.bikes[bikeIndex].exhaustionAdded = true;
     }
 
