@@ -7,11 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 
 import { FlammeComponent } from './components/flamme/flamme.component';
+import { FlammeColorComponent } from './components/flamme-color/flamme-color.component';
+ 
 
 @NgModule({
     declarations: [
         AppComponent,
-        FlammeComponent
+        FlammeComponent,
+        FlammeColorComponent
     ],
     imports: [
         CommonModule,

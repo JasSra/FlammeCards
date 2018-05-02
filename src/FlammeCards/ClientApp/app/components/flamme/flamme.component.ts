@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FlammeBike } from './FlammeBike';
 import { FlammeCardManager } from './FlammeCardManager';
 
+const rouler: string = "rouler";
+const sprinter: string = "sprinter";
 
 @Component({
     selector: 'flamme',
@@ -13,7 +15,7 @@ export class FlammeComponent {
     bikes: Array<FlammeBike> = new Array<FlammeBike>();
 
     phase: number = 10;
-
+    
     chosenTeamType: string = "human";
     chosenTeamColour: string = "pink";
     teamTypes: Array<string> = new Array();
@@ -34,7 +36,7 @@ export class FlammeComponent {
 
         this.bikes = new Array<FlammeBike>();
     }
-   
+
     endMovement() {
         this.phase = 20;
 
@@ -76,59 +78,73 @@ export class FlammeComponent {
         this.phase = 0;
     }
 
+
+    disableIfNoTeamSelected() {
+        return this.bikes === null || this.bikes === undefined || this.bikes.length === 0;
+    }
+
     addTeam() {
         console.log(this.chosenTeamColour);
 
-        if (this.chosenTeamType === "peloton") {
-            var peloBike = new FlammeBike();
-            peloBike.name = "peloton";
-            peloBike.colour = this.chosenTeamColour;
-            peloBike.cardManager = new FlammeCardManager(2);
-            peloBike.teamType = "peloton";
+        if (this.chosenTeamColour.length > 0 && this.chosenTeamType.length > 0) {
+            if (this.chosenTeamType === "peloton") {
+                var peloBike = new FlammeBike();
+                peloBike.name = "peloton";
+                peloBike.colour = this.chosenTeamColour;
+                peloBike.cardManager = new FlammeCardManager(2);
+                peloBike.teamType = "peloton";
 
-            this.bikes.push(peloBike);
-        }
-        else if (this.chosenTeamType === "muscle") {
-            var muscleRouler = new FlammeBike();
-            muscleRouler.name = "rouler";
-            muscleRouler.colour = this.chosenTeamColour;
-            muscleRouler.cardManager = new FlammeCardManager(0);
-            muscleRouler.teamType = "muscle";
+                this.bikes.push(peloBike);
+            }
+            else if (this.chosenTeamType === "muscle") {
+                var muscleRouler = new FlammeBike();
+                muscleRouler.name = rouler;
+                muscleRouler.colour = this.chosenTeamColour;
+                muscleRouler.cardManager = new FlammeCardManager(0);
+                muscleRouler.teamType = "muscle";
 
-            this.bikes.push(muscleRouler);
+                this.bikes.push(muscleRouler);
 
-            var muscleSprinter = new FlammeBike();
-            muscleSprinter.name = "sprinter";
-            muscleSprinter.colour = this.chosenTeamColour;
-            muscleSprinter.cardManager = new FlammeCardManager(3);
-            muscleSprinter.teamType = "muscle";
+                var muscleSprinter = new FlammeBike();
+                muscleSprinter.name = sprinter;
+                muscleSprinter.colour = this.chosenTeamColour;
+                muscleSprinter.cardManager = new FlammeCardManager(3);
+                muscleSprinter.teamType = "muscle";
 
-            this.bikes.push(muscleSprinter);
+                this.bikes.push(muscleSprinter);
 
-        } else {
-            var bike1 = new FlammeBike();
-            bike1.name = "rouler";
-            bike1.colour = this.chosenTeamColour;
-            bike1.cardManager = new FlammeCardManager(0);
-            bike1.cardManager.takeCards();
-            bike1.teamType = "human";
+            } else {
+                var bike1 = new FlammeBike();
+                bike1.name = rouler;
+                bike1.colour = this.chosenTeamColour;
+                bike1.cardManager = new FlammeCardManager(0);
+                bike1.cardManager.takeCards();
+                bike1.teamType = "human";
 
-            this.bikes.push(bike1);
+                this.bikes.push(bike1);
 
-            var bike2 = new FlammeBike();
-            bike2.name = "sprinter";
-            bike2.colour = this.chosenTeamColour;
-            bike2.cardManager = new FlammeCardManager(1);
-            bike2.cardManager.takeCards();
-            bike2.teamType = "human";
+                var bike2 = new FlammeBike();
+                bike2.name = sprinter;
+                bike2.colour = this.chosenTeamColour;
+                bike2.cardManager = new FlammeCardManager(1);
+                bike2.cardManager.takeCards();
+                bike2.teamType = "human";
 
-            this.bikes.push(bike2);
-        }
+                this.bikes.push(bike2);
+
+                const index = this.teamColours.indexOf(this.chosenTeamColour);
+                if (index > -1) {
+                    this.teamColours.splice(index, 1);
+                }
+            }
+        } 
+        
+        this.chosenTeamColour = '';
     }
 
     addExhaustion(bikeIndex: number) {
         console.log("add exhaustion to " + this.bikes[bikeIndex].name);
-        
+
         this.bikes[bikeIndex].exhaustionAdded = true;
     }
 

@@ -1,0 +1,8 @@
+.flamme-color {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: white;
+    border-radius: 13px;
+    border: 1px solid darkgray;
+}

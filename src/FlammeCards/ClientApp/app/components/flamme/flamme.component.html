@@ -1,4 +1,4 @@
-<h3>round {{roundCount}}</h3>
+<h3>Round {{roundCount}}</h3>
 
 <div *ngIf="phase === 0">
    
@@ -77,7 +77,7 @@
 
 <div *ngIf="phase === 10">
   
-  <h3>Setup</h3>
+  <h3>Choose Team</h3>
 
   <select [(ngModel)]="chosenTeamType" class="form-control">
     <option *ngFor="let teamType of teamTypes" [value]="teamType">{{teamType}}</option>
@@ -90,18 +90,37 @@
   
   <br/>
 
-  <button class="btn" (click)="addTeam()">Add team</button>
-  <button class="btn" (click)="phase = 0">Start</button>
+  <button class="btn btn-sm btn-info" (click)="addTeam()">Add team</button>
+  <button class="btn btn-sm btn-success" [disabled]="disableIfNoTeamSelected()" (click)="phase = 0">Start</button>
   <br/>
 
   <br/>
-  <h4>Added Bikes</h4>
-
-  <table class="table">
-    <tr *ngFor="let bike of bikes; let j = index">
-      <td><h4>{{bike.teamType}} {{bike.colour}} {{bike.name}}</h4></td>
-    </tr>
-  </table>
+  <div style="position: relative">
+    <table class="table table-condensed  table-responsive" *ngIf="bikes">
+      <thead>
+      <tr>
+        <th>
+          List of cyclists
+        </th>
+      </tr>
+      </thead>
+      <tbody> 
+      <tr *ngFor="let bike of bikes; let j = index" class="">
+        <td >
+          <h4 class="pull-left" > <flammeColor [color]="bike.colour"></flammeColor> {{bike.teamType}} {{bike.colour}} {{bike.name}}</h4>
+          <div class="pull-right" >
+            <div  [ngStyle]="{'background-color':bike.colour}"  style="height: 100px; width: 100px;border-radius: 5px; border: 5px solid white;box-shadow: inset 1px 1px 19px 3px #00000042;padding: 5px;">
+              <img src="/assets/rouleur.png" class="img-responsive animated flipInX" *ngIf="bike.name === 'rouler'"/>
+              <img src="/assets/sprinter.png" class="img-responsive animated flipInY" *ngIf="bike.name === 'sprinter'"/>
+            </div>
+          </div>
+         
+          <div class="clearfix"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
