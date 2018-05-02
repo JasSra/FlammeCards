@@ -5,7 +5,7 @@
   <h3>Movement</h3>
   
   <table class="table">
-    <tr *ngFor="let bike of bikes; let j = index">
+    <tr *ngFor="let bike of bikes; let j = index" class="sprinter gamecard">
       <td>
         
         <div >
@@ -15,7 +15,7 @@
             <h3><span>Selected: {{bike.selectedCard}}</span></h3>
 
             <div *ngIf="bike.cardsState === 0">
-              <button class="btn" (click)="startSelect(j)">Select card</button>
+              <button class="btn btncard" (click)="startSelect(j)"  >Select card</button>
             </div>
             <div *ngIf="bike.cardsState === 1">
               <ul style="padding: 0;">
@@ -125,3 +125,36 @@
     </tr>
   </table>  
 </div>
+
+<style>
+  
+  .gamecard {
+   
+    border: 1px solid white;
+    border-radius: 4px;
+    box-shadow: #00000045 0px 0px 6px 1px;
+    margin: 9px;
+    display: block;
+    color: black;
+    background-size: cover;
+    background-position: top;
+  }
+
+  .rouler {
+    background: url('/assets/sprinter.jpg');
+    background-position: top;
+    background-position-x: 156px;
+  }
+.sprinter {
+
+  background: url('/assets/sprinter.jpg');
+  background-position: top;
+  background-position-x: 156px;
+
+}
+  .btncard {
+    font-family: 'Segoe UI Light';
+    background: pink;
+    font-weight: normal;
+  }
+</style>

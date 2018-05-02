@@ -111,6 +111,7 @@ export class FlammeCardManager {
         return card;
     }
 
+    // TODO handle running out of cards
     takeCards(amountOfCards : number = 4): Array<number> {
         this.hand = new Array();
 
